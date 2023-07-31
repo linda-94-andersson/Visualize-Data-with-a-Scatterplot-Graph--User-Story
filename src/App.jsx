@@ -62,6 +62,12 @@ function App() {
 
     svg.append("g").attr("id", "y-axis").call(yAxis);
 
+    // Define a categorical color scale
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    // Set the domain of the color scale to unique values from the data
+    colorScale.domain(data.map((d) => d.Doping));
+
     // Create dots for each data point
     svg
       .selectAll(".dot")
@@ -74,6 +80,7 @@ function App() {
       .attr("cy", (d) => yScale(d.Time))
       .attr("data-xvalue", (d) => d.Year)
       .attr("data-yvalue", (d) => d.Time.toISOString())
+      .attr("fill", (d) => colorScale(d.Doping)) // Set the fill color based on the 'Doping' value
       .on("mouseover", handleMouseOver)
       .on("mouseout", handleMouseOut);
 
@@ -129,7 +136,6 @@ function App() {
       <h1 id="title">Scatterplot Graph</h1>
       <svg id="scatterplot"></svg>
       <div id="tooltip" style={{ display: "none" }}></div>
-      <div id="legend">Legend Text</div>
     </div>
   );
 }
