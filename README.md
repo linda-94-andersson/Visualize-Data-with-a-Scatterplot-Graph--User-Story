@@ -1,8 +1,7 @@
 ## Deployment
-* WIP
+* https://linda-andersson-scatterplot-graph.netlify.app/
 
 ## Skills used for this project
-* WIP
 * React
 * D3
 * Javascript
